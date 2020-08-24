@@ -1,4 +1,5 @@
 const { from } = require('rxjs');
+const { filter, reduce } = require('rxjs/operators');
 
 /**
  * Ejercicio: 
@@ -13,13 +14,12 @@ const { from } = require('rxjs');
 (() => {
 
 
-  const datos = [1, 2, 'foo', 3, 5, 6, 'bar', 7, 8];
+    const datos = [1, 2, 'foo', 3, 5, 6, 'bar', 7, 8];
 
-  from(datos).pipe(
-    // Trabajar aquí
-
-
-  ).subscribe(console.log) // La salida debe de ser 32
+    from(datos).pipe( 
+        filter(val => !isNaN(val)),
+        reduce((acc, curr) => acc + curr)
+    ).subscribe(console.log) // La salida debe de ser 32
 
 
 
